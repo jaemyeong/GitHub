@@ -1,6 +1,6 @@
 # GitHub
 
-[![Tuist badge](https://img.shields.io/badge/Powered%20by-Tuist-blue)](https://tuist.io) [![Tuist - Build and Analyze](https://github.com/jaemyeong/GitHub/actions/workflows/swift-xcode.yml/badge.svg)](https://github.com/jaemyeong/GitHub/actions/workflows/swift-xcode.yml) [![Tuist - Test](https://github.com/jaemyeong/GitHub/actions/workflows/swift-test.yml/badge.svg)](https://github.com/jaemyeong/GitHub/actions/workflows/swift-test.yml)
+[![Tuist badge](https://img.shields.io/badge/Powered%20by-Tuist-blue)](https://tuist.io) [![Tuist - Build and Analyze](https://github.com/jaemyeong/GitHub/actions/workflows/swift-build.yml/badge.svg)](https://github.com/jaemyeong/GitHub/actions/workflows/swift-build.yml) [![Tuist - Test](https://github.com/jaemyeong/GitHub/actions/workflows/swift-test.yml/badge.svg)](https://github.com/jaemyeong/GitHub/actions/workflows/swift-test.yml)
 
 ## Overview
 
