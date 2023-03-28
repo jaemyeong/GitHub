@@ -16,8 +16,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            Tuist/Dependencies
+          key: ${{ runner.os }}-tuist-${{ hashFiles('Tuist/Dependencies/graph.json') }}
+          restore-keys: |
+            ${{ runner.os }}-tuist-
+      - name: Tuist fetch
+        uses: tuist/tuist-action@0.13.0
+        with:
+          command: fetch
       - name: Tuist build
         uses: tuist/tuist-action@0.13.0
         with:
           command: build
-          arguments: ""
