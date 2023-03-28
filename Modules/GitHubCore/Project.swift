@@ -164,6 +164,10 @@ let project = Project(
             scripts: [],
             dependencies: [
                 .target(name: "GitHubCore"),
+                .external(name: "RxSwift"),
+                .external(name: "RxBlocking"),
+                .external(name: "Quick"),
+                .external(name: "Nimble"),
             ],
             settings: .settings(
                 base: [

@@ -28,7 +28,7 @@ jobs:
         uses: tuist/tuist-action@0.13.0
         with:
           command: fetch
-      - name: Tuist build
+      - name: Tuist test
         uses: tuist/tuist-action@0.13.0
         with:
           command: test
