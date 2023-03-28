@@ -178,6 +178,10 @@ let project = Project(
             scripts: [],
             dependencies: [
                 .target(name: "GitHub"),
+                .external(name: "RxSwift"),
+                .external(name: "RxBlocking"),
+                .external(name: "Quick"),
+                .external(name: "Nimble"),
             ],
             settings: .settings(
                 base: [
@@ -217,7 +221,12 @@ let project = Project(
             headers: nil,
             entitlements: nil,
             scripts: [],
-            dependencies: [],
+            dependencies: [
+                .external(name: "RxSwift"),
+                .external(name: "RxBlocking"),
+                .external(name: "Quick"),
+                .external(name: "Nimble"),
+            ],
             settings: .settings(
                 base: [
                     "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": .string("YES"),
