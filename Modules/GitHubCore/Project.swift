@@ -104,6 +104,7 @@ let project = Project(
             dependencies: [
                 .external(name: "RxSwift"),
                 .external(name: "RxCocoa"),
+                .external(name: "RxDataSources"),
                 .external(name: "ErrorKit"),
                 .external(name: "Logging"),
             ],

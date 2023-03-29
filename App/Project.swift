@@ -111,6 +111,7 @@ let project = Project(
                 .project(target: "GitHubCore", path: "../Modules/GitHubCore"),
                 .external(name: "RxSwift"),
                 .external(name: "RxCocoa"),
+                .external(name: "RxDataSources"),
                 .external(name: "ErrorKit"),
                 .external(name: "Logging"),
             ],
