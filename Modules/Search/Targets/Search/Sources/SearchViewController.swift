@@ -43,5 +43,14 @@ public final class SearchViewController: UIViewController {
 extension SearchViewController {
     
     @objc
-    private func signInButtonTapped(_ sender: UIBarButtonItem) {}
+    private func signInButtonTapped(_ sender: UIBarButtonItem) {
+        @Inject(name: "SignInViewController", context: .shared)
+        var viewController: UIViewController?
+        
+        guard let viewController else {
+            return
+        }
+        
+        self.present(viewController, animated: true)
+    }
 }
