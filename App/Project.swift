@@ -3,7 +3,7 @@ import ProjectDescription
 let project = Project(
     name: "GitHub",
     organizationName: nil,
-    options: .options(),
+    options: .options(defaultKnownRegions: ["ko"], developmentRegion: "ko"),
     packages: [],
     settings: .settings(
         base: [
