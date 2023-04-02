@@ -108,6 +108,8 @@ let project = Project(
             scripts: [],
             dependencies: [
                 .project(target: "Core", path: "../Modules/Core"),
+                .project(target: "Authorization", path: "../Modules/Authorization"),
+                .project(target: "SignIn", path: "../Modules/SignIn"),
                 .project(target: "Search", path: "../Modules/Search"),
                 .project(target: "Profile", path: "../Modules/Profile"),
                 .external(name: "RxSwift"),
@@ -115,6 +117,7 @@ let project = Project(
                 .external(name: "RxDataSources"),
                 .external(name: "ErrorKit"),
                 .external(name: "Logging"),
+                .external(name: "ULID"),
             ],
             settings: .settings(
                 base: [
