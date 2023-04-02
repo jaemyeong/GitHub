@@ -1,7 +1,7 @@
 import ProjectDescription
 
 let project = Project(
-    name: "Search",
+    name: "SignIn",
     organizationName: nil,
     options: .options(defaultKnownRegions: ["ko"], developmentRegion: "ko"),
     packages: [],
@@ -79,22 +79,22 @@ let project = Project(
         defaultSettings: .none),
     targets: [
         Target(
-            name: "Search",
+            name: "SignIn",
             platform: .iOS,
             product: .framework,
             productName: nil,
-            bundleId: "com.jaemyeong.Search",
+            bundleId: "com.jaemyeong.SignIn",
             deploymentTarget: .iOS(targetVersion: "13.0", devices: [.iphone]),
             infoPlist: nil,
             sources: [
-                "Targets/Search/Sources/**"
+                "Targets/SignIn/Sources/**"
             ],
             resources: [
-                "Targets/Search/Resources/**",
+                "Targets/SignIn/Resources/**",
             ],
             copyFiles: nil,
             headers: .headers(
-                public: "Targets/Search/Sources/**",
+                public: "Targets/SignIn/Sources/**",
                 private: nil,
                 project: nil,
                 exclusionRule: .projectExcludesPrivateAndPublic
@@ -122,7 +122,7 @@ let project = Project(
                     "GENERATE_INFOPLIST_FILE": .string("YES"),
                     "INFOPLIST_KEY_NSHumanReadableCopyright": .string(""),
                     "INSTALL_PATH": .string("$(LOCAL_LIBRARY_DIR)/Frameworks"),
-                    "PRODUCT_BUNDLE_IDENTIFIER": .string("com.jaemyeong.Search"),
+                    "PRODUCT_BUNDLE_IDENTIFIER": .string("com.jaemyeong.SignIn"),
                     "PRODUCT_NAME": .string("$(TARGET_NAME:c99extidentifier)"),
                     "SKIP_INSTALL": .string("YES"),
                     "SWIFT_EMIT_LOC_STRINGS": .string("YES"),
@@ -151,15 +151,15 @@ let project = Project(
             buildRules: []
         ),
         Target(
-            name: "SearchTests",
+            name: "SignInTests",
             platform: .iOS,
             product: .unitTests,
             productName: nil,
-            bundleId: "com.jaemyeong.SearchTests",
+            bundleId: "com.jaemyeong.SignInTests",
             deploymentTarget: .iOS(targetVersion: "13.0", devices: [.iphone]),
             infoPlist: nil,
             sources: [
-                "Targets/Search/Tests/**"
+                "Targets/SignIn/Tests/**"
             ],
             resources: nil,
             copyFiles: nil,
@@ -167,7 +167,7 @@ let project = Project(
             entitlements: nil,
             scripts: [],
             dependencies: [
-                .target(name: "Search"),
+                .target(name: "SignIn"),
                 .external(name: "RxSwift"),
                 .external(name: "RxBlocking"),
                 .external(name: "Quick"),
@@ -178,7 +178,7 @@ let project = Project(
                     "CODE_SIGN_STYLE": .string("Automatic"),
                     "DEVELOPMENT_TEAM": .string("67YPF88Z6T"),
                     "GENERATE_INFOPLIST_FILE": .string("YES"),
-                    "PRODUCT_BUNDLE_IDENTIFIER": .string("com.jaemyeong.SearchTests"),
+                    "PRODUCT_BUNDLE_IDENTIFIER": .string("com.jaemyeong.SignInTests"),
                     "PRODUCT_NAME": .string("$(TARGET_NAME)"),
                     "SWIFT_EMIT_LOC_STRINGS": .string("NO"),
                     "SWIFT_VERSION": .string("5.0"),
@@ -197,7 +197,7 @@ let project = Project(
     schemes: [],
     fileHeaderTemplate: nil,
     additionalFiles: [
-        .folderReference(path: "Search.docc"),
+        .folderReference(path: "SignIn.docc"),
     ],
     resourceSynthesizers: .default
 )

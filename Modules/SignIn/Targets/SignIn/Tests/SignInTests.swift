@@ -1,8 +1,8 @@
 import XCTest
 
-@testable import GitHubCore
+@testable import SignInTests
 
-public final class SearchTests: XCTestCase {
+public final class SignInTestsTests: XCTestCase {
     
     public func testTrue() {
         XCTAssertTrue(true)
