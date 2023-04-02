@@ -91,7 +91,6 @@ let project = Project(
                             .dictionary([
                                 "UISceneConfigurationName": .string("Default Configuration"),
                                 "UISceneDelegateClassName": .string("$(PRODUCT_MODULE_NAME).SceneDelegate"),
-                                "UISceneStoryboardFile": .string("Main")
                             ]),
                         ]),
                     ]),
@@ -124,7 +123,6 @@ let project = Project(
                     "GENERATE_INFOPLIST_FILE": .string("YES"),
                     "INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents": .string("YES"),
                     "INFOPLIST_KEY_UILaunchStoryboardName": .string("LaunchScreen"),
-                    "INFOPLIST_KEY_UIMainStoryboardFile": .string("Main"),
                     "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad": .array([
                         "UIInterfaceOrientationPortrait",
                         "UIInterfaceOrientationPortraitUpsideDown",
