@@ -107,7 +107,6 @@ let project = Project(
             entitlements: nil,
             scripts: [],
             dependencies: [
-                .project(target: "GitHubCore", path: "../Modules/GitHubCore"),
                 .project(target: "Core", path: "../Modules/Core"),
                 .project(target: "Search", path: "../Modules/Search"),
                 .project(target: "Profile", path: "../Modules/Profile"),
