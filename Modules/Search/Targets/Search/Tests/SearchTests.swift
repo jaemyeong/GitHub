@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import GitHubCore
+@testable import Search
 
 public final class SearchTests: XCTestCase {
     
