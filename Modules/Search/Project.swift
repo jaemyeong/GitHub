@@ -1,7 +1,7 @@
 import ProjectDescription
 
 let project = Project(
-    name: "GitHub",
+    name: "Search",
     organizationName: nil,
     options: .options(defaultKnownRegions: ["ko"], developmentRegion: "ko"),
     packages: [],
@@ -46,8 +46,11 @@ let project = Project(
             "GCC_WARN_UNINITIALIZED_AUTOS": .string("YES_AGGRESSIVE"),
             "GCC_WARN_UNUSED_FUNCTION": .string("YES"),
             "GCC_WARN_UNUSED_VARIABLE": .string("YES"),
+            "IPHONEOS_DEPLOYMENT_TARGET": .string("13.0"),
             "MTL_FAST_MATH": .string("YES"),
             "SDKROOT": .string("iphoneos"),
+            "VERSIONING_SYSTEM": .string("apple-generic"),
+            "VERSION_INFO_PREFIX": .string(""),
             "CURRENT_PROJECT_VERSION": .string("1"),
             "MARKETING_VERSION": .string("0.1.0"),
         ],
@@ -73,43 +76,33 @@ let project = Project(
             "SWIFT_OPTIMIZATION_LEVEL": .string("-O"),
             "VALIDATE_PRODUCT": .string("YES"),
         ],
-        defaultSettings: .none
-    ),
+        defaultSettings: .none),
     targets: [
         Target(
-            name: "GitHub",
+            name: "Search",
             platform: .iOS,
-            product: .app,
+            product: .framework,
             productName: nil,
-            bundleId: "com.jaemyeong.GitHub",
+            bundleId: "com.jaemyeong.Search",
             deploymentTarget: .iOS(targetVersion: "13.0", devices: [.iphone]),
-            infoPlist: .dictionary([
-                "UIApplicationSceneManifest": .dictionary([
-                    "UIApplicationSupportsMultipleScenes": .boolean(false),
-                    "UISceneConfigurations": .dictionary([
-                        "UIWindowSceneSessionRoleApplication": .array([
-                            .dictionary([
-                                "UISceneConfigurationName": .string("Default Configuration"),
-                                "UISceneDelegateClassName": .string("$(PRODUCT_MODULE_NAME).SceneDelegate"),
-                            ]),
-                        ]),
-                    ]),
-                ]),
-            ]),
+            infoPlist: nil,
             sources: [
-                "Targets/GitHub/Sources/**"
+                "Targets/Search/Sources/**"
             ],
             resources: [
-                "Targets/GitHub/Resources/**"
+                "Targets/Search/Resources/**",
             ],
             copyFiles: nil,
-            headers: nil,
+            headers: .headers(
+                public: "Targets/Search/Sources/**",
+                private: nil,
+                project: nil,
+                exclusionRule: .projectExcludesPrivateAndPublic
+            ),
             entitlements: nil,
             scripts: [],
             dependencies: [
-                .project(target: "GitHubCore", path: "../Modules/GitHubCore"),
-                .project(target: "Core", path: "../Modules/Core"),
-                .project(target: "Search", path: "../Modules/Search"),
+                .project(target: "Core", path: "../Core"),
                 .external(name: "RxSwift"),
                 .external(name: "RxCocoa"),
                 .external(name: "RxDataSources"),
@@ -118,26 +111,18 @@ let project = Project(
             ],
             settings: .settings(
                 base: [
-                    "ASSETCATALOG_COMPILER_APPICON_NAME": .string("AppIcon"),
-                    "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": .string("AccentColor"),
                     "CODE_SIGN_STYLE": .string("Automatic"),
+                    "DEFINES_MODULE": .string("YES"),
                     "DEVELOPMENT_TEAM": .string("67YPF88Z6T"),
+                    "DYLIB_COMPATIBILITY_VERSION": .string("1"),
+                    "DYLIB_CURRENT_VERSION": .string("1"),
+                    "DYLIB_INSTALL_NAME_BASE": .string("@rpath"),
                     "GENERATE_INFOPLIST_FILE": .string("YES"),
-                    "INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents": .string("YES"),
-                    "INFOPLIST_KEY_UILaunchStoryboardName": .string("LaunchScreen"),
-                    "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad": .array([
-                        "UIInterfaceOrientationPortrait",
-                        "UIInterfaceOrientationPortraitUpsideDown",
-                        "UIInterfaceOrientationLandscapeLeft",
-                        "UIInterfaceOrientationLandscapeRight",
-                    ]),
-                    "INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone": .array([
-                        "UIInterfaceOrientationPortrait",
-                        "UIInterfaceOrientationLandscapeLeft",
-                        "UIInterfaceOrientationLandscapeRight",
-                    ]),
-                    "PRODUCT_BUNDLE_IDENTIFIER": .string("com.jaemyeong.GitHub"),
-                    "PRODUCT_NAME": .string("$(TARGET_NAME)"),
+                    "INFOPLIST_KEY_NSHumanReadableCopyright": .string(""),
+                    "INSTALL_PATH": .string("$(LOCAL_LIBRARY_DIR)/Frameworks"),
+                    "PRODUCT_BUNDLE_IDENTIFIER": .string("com.jaemyeong.Search"),
+                    "PRODUCT_NAME": .string("$(TARGET_NAME:c99extidentifier)"),
+                    "SKIP_INSTALL": .string("YES"),
                     "SWIFT_EMIT_LOC_STRINGS": .string("YES"),
                     "SWIFT_VERSION": .string("5.0"),
                 ],
@@ -145,13 +130,15 @@ let project = Project(
                     "LD_RUNPATH_SEARCH_PATHS": .array([
                         "$(inherited)",
                         "@executable_path/Frameworks",
+                        "@loader_path/Frameworks",
                     ]),
                 ],
                 release: [
                     "LD_RUNPATH_SEARCH_PATHS": .array([
                         "$(inherited)",
                         "@executable_path/Frameworks",
-                    ]),
+                        "@loader_path/Frameworks",
+                    ])
                 ],
                 defaultSettings: .none
             ),
@@ -162,15 +149,15 @@ let project = Project(
             buildRules: []
         ),
         Target(
-            name: "GitHubTests",
+            name: "SearchTests",
             platform: .iOS,
             product: .unitTests,
             productName: nil,
-            bundleId: "com.jaemyeong.GitHubTests",
+            bundleId: "com.jaemyeong.SearchTests",
             deploymentTarget: .iOS(targetVersion: "13.0", devices: [.iphone]),
             infoPlist: nil,
             sources: [
-                "Targets/GitHub/Tests/**"
+                "Targets/Search/Tests/**"
             ],
             resources: nil,
             copyFiles: nil,
@@ -178,7 +165,7 @@ let project = Project(
             entitlements: nil,
             scripts: [],
             dependencies: [
-                .target(name: "GitHub"),
+                .target(name: "Search"),
                 .external(name: "RxSwift"),
                 .external(name: "RxBlocking"),
                 .external(name: "Quick"),
@@ -186,63 +173,18 @@ let project = Project(
             ],
             settings: .settings(
                 base: [
-                    "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": .string("YES"),
-                    "BUNDLE_LOADER": .string("$(TEST_HOST)"),
                     "CODE_SIGN_STYLE": .string("Automatic"),
                     "DEVELOPMENT_TEAM": .string("67YPF88Z6T"),
                     "GENERATE_INFOPLIST_FILE": .string("YES"),
-                    "PRODUCT_BUNDLE_IDENTIFIER": .string("com.jaemyeong.GitHubTests"),
+                    "PRODUCT_BUNDLE_IDENTIFIER": .string("com.jaemyeong.SearchTests"),
                     "PRODUCT_NAME": .string("$(TARGET_NAME)"),
                     "SWIFT_EMIT_LOC_STRINGS": .string("NO"),
                     "SWIFT_VERSION": .string("5.0"),
-                    "TEST_HOST": .string("$(BUILT_PRODUCTS_DIR)/GitHub.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GitHub"),
                 ],
                 debug: [:],
                 release: [:],
-                defaultSettings: .none),
-            coreDataModels: [],
-            environment: [:],
-            launchArguments: [],
-            additionalFiles: [],
-            buildRules: []
-        ),
-        Target(
-            name: "GitHubUITests",
-            platform: .iOS,
-            product: .uiTests,
-            productName: nil,
-            bundleId: "com.jaemyeong.GitHubUITests",
-            deploymentTarget: .iOS(targetVersion: "13.0", devices: [.iphone]),
-            infoPlist: nil,
-            sources: [
-                "Targets/GitHub/UITests/**"
-            ],
-            resources: nil,
-            copyFiles: nil,
-            headers: nil,
-            entitlements: nil,
-            scripts: [],
-            dependencies: [
-                .external(name: "RxSwift"),
-                .external(name: "RxBlocking"),
-                .external(name: "Quick"),
-                .external(name: "Nimble"),
-            ],
-            settings: .settings(
-                base: [
-                    "ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES": .string("YES"),
-                    "CODE_SIGN_STYLE": .string("Automatic"),
-                    "DEVELOPMENT_TEAM": .string("67YPF88Z6T"),
-                    "GENERATE_INFOPLIST_FILE": .string("YES"),
-                    "PRODUCT_BUNDLE_IDENTIFIER": .string("com.jaemyeong.GitHubUITests"),
-                    "PRODUCT_NAME": .string("$(TARGET_NAME)"),
-                    "SWIFT_EMIT_LOC_STRINGS": .string("NO"),
-                    "SWIFT_VERSION": .string("5.0"),
-                    "TEST_TARGET_NAME": .string("GitHub"),
-                ],
-                debug: [:],
-                release: [:],
-                defaultSettings: .none),
+                defaultSettings: .none
+            ),
             coreDataModels: [],
             environment: [:],
             launchArguments: [],
@@ -252,6 +194,8 @@ let project = Project(
     ],
     schemes: [],
     fileHeaderTemplate: nil,
-    additionalFiles: [],
+    additionalFiles: [
+        .folderReference(path: "Search.docc"),
+    ],
     resourceSynthesizers: .default
 )
