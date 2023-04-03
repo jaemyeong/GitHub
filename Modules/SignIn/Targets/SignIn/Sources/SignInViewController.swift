@@ -4,21 +4,7 @@ import WebKit
 import RxSwift
 import RxCocoa
 
-public final class SignInViewController: UIViewController {
-    
-    public var contentView: SignInView {
-        assert(self.view is SignInView)
-        
-        return self.view as! SignInView
-    }
-    
-    public let viewModel: SignInViewModel = SignInViewModel()
-    
-    public override func loadView() {
-        self.view = SignInView()
-    }
-    
-    public var disposeBag: DisposeBag = DisposeBag()
+public final class SignInViewController: ViewController<SignInView, SignInViewModel> {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
