@@ -3,16 +3,23 @@ import ErrorKit
 
 public final class SearchView: UIView {
     
+    var isEmpty: Bool {
+        didSet {
+            self.collectionView.backgroundView = self.isEmpty
+            ? SearchEmptyView()
+            : nil
+        }
+    }
+    
     public let collectionView: UICollectionView
     
+    public let refreshControl: UIRefreshControl
+    
     public override init(frame: CGRect) {
-        let configuration = UICollectionViewCompositionalLayoutConfiguration()
+        self.isEmpty = true
         
-        let collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { sectionIndex, layoutEnvironment in
-            return nil
-        }, configuration: configuration)
-        
-        self.collectionView = UICollectionView(frame: frame, collectionViewLayout: collectionViewLayout)
+        self.collectionView = UICollectionView(frame: frame, collectionViewLayout: UICollectionViewLayout())
+        self.refreshControl = UIRefreshControl()
         
         super.init(frame: frame)
         
@@ -30,6 +37,11 @@ public final class SearchView: UIView {
         self.backgroundColor = .systemBackground
         
         self.collectionView.backgroundColor = .systemBackground
+        self.collectionView.backgroundView = SearchEmptyView()
+        self.collectionView.refreshControl = self.refreshControl
+        
+        SearchViewSection.register(collectionView: self.collectionView)
+        SearchViewItem.register(collectionView: self.collectionView)
     }
     
     public required init?(coder: NSCoder) {

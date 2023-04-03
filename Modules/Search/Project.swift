@@ -110,6 +110,7 @@ let project = Project(
                 .external(name: "Logging"),
                 .external(name: "Alamofire"),
                 .external(name: "OAuthSwift"),
+                .external(name: "Collections"),
             ],
             settings: .settings(
                 base: [
