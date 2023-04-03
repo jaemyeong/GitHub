@@ -2,8 +2,8 @@ import ProjectDescription
 
 let dependencies = Dependencies(
     carthage: CarthageDependencies([
-        .github(path: "OAuthSwift/OAuthSwift", requirement: .upToNext("2.2.0")),
         .github(path: "Alamofire/Alamofire", requirement: .upToNext("5.6.4")),
+        .github(path: "OAuthSwift/OAuthSwift", requirement: .upToNext("2.2.0")),
     ]),
     swiftPackageManager: SwiftPackageManagerDependencies(
         [

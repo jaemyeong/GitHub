@@ -44,13 +44,15 @@ extension SearchViewController {
     
     @objc
     private func signInButtonTapped(_ sender: UIBarButtonItem) {
-        @Inject(name: "SignInViewController", context: .shared)
-        var viewController: UIViewController?
+        @Inject(name: "SignInViewController")
+        var rootViewController: UIViewController?
         
-        guard let viewController else {
+        guard let rootViewController else {
             return
         }
         
-        self.present(viewController, animated: true)
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        
+        self.present(navigationController, animated: true)
     }
 }
