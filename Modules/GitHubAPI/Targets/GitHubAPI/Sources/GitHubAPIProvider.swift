@@ -8,6 +8,7 @@ public final class GitHubAPIProvider {
     
     private static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
         
         return decoder
     }()
@@ -51,7 +52,8 @@ public final class GitHubAPIProvider {
         self.provider
             .rx
             .request(target)
-            .mapJSON()
+            .filterSuccessfulStatusCodes()
+            .mapJSON(failsOnEmptyData: false)
     }
     
     @discardableResult

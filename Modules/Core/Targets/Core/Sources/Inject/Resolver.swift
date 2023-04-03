@@ -10,14 +10,11 @@ public struct Resolver: Hashable {
     
     public let type: Any
     
-    public let name: String?
-    
     public let initializer: (Container) -> Any
     
     public init<T>(type: T.Type, name: String?, initializer: @escaping (Container) -> T) {
         self.id = Identifier(type: type, name: name)
         self.type = type
-        self.name = name
         self.initializer = initializer
     }
     

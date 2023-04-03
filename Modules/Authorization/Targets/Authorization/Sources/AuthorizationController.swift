@@ -96,4 +96,8 @@ public final class AuthorizationController: CustomStringConvertible {
             }
         }
     }
+    
+    public func signOut() {
+        
+    }
 }

@@ -80,15 +80,56 @@ extension AuthorizationController: SignInControllerProtocol {
 extension AuthorizationController: GitHubAPIControllerProtocol {
     
     public var accessToken: String? {
-        self.credential?.accessToken
+        if let accessToken = self.credential?.accessToken {
+            logger.info("accessToken: \(accessToken)")
+        }
+        
+        return self.credential?.accessToken
     }
 }
 
 extension GitHubAPIProvider: SearchControllerProtocol {
     
-    public func search(term: String, completionHandler: @escaping (Result<[Repository], Swift.Error>) -> Void) {
-        self.request(target: .searchRepositories(term: term)) { result in
-            logger.info("\(result)")
+    public func isStarred(owner: String, repository: String, completionHandler: @escaping (Result<Void, Swift.Error>) -> Void) {
+        self.request(target: .isStarred(owner: owner, repository: repository)) { result in
+            logger.info("\(#function) \(result)")
+            switch result {
+            case .success:
+                completionHandler(.success(Void()))
+            case .failure(let error):
+                logger.error("\(error)")
+                completionHandler(.failure(error))
+            }
         }
+    }
+    
+    public func search(term: String, completionHandler: @escaping (Result<[Repository], Swift.Error>) -> Void) {
+        self.request(target: .searchRepositories(term: term), mappableType: SearchResponse.self) { result in
+            switch result {
+            case .success(let value):
+                logger.info("\(type(of: value)): \(value)")
+                completionHandler(.success(value.items.map(Repository.init(repoSearchResultItem:))))
+            case .failure(let error):
+                logger.error("\(error)")
+                completionHandler(.failure(error))
+            }
+        }
+    }
+}
+
+extension Repository {
+    
+    public init(repoSearchResultItem: RepoSearchResultItem) {
+        logger.info("repoSearchResultItem: { \(repoSearchResultItem) }")
+        self.init(
+            id: repoSearchResultItem.id,
+            owner: repoSearchResultItem.owner?.login,
+            name: repoSearchResultItem.name,
+            description: repoSearchResultItem.description,
+            stargazersCount: repoSearchResultItem.stargazersCount,
+            starredAt: repoSearchResultItem.owner?.starredAt,
+            starredURL: repoSearchResultItem.owner?.starredURL,
+            stargazersURL: repoSearchResultItem.stargazersURL
+        )
     }
 }

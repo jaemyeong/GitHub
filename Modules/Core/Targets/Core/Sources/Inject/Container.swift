@@ -61,7 +61,7 @@ public class Container {
                     return false
                 }
 
-                guard element.name == name else {
+                guard element.id.name == name else {
                     return false
                 }
 

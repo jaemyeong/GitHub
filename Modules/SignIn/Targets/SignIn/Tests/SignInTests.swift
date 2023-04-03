@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import SignInTests
+@testable import SignIn
 
 public final class SignInTestsTests: XCTestCase {
     

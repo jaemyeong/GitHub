@@ -45,10 +45,7 @@ public final class SearchViewController: ViewController<SearchView, SearchViewMo
             ),
         ]
         
-        let dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<SearchViewSection, SearchViewItem>>(
-            animationConfiguration: AnimationConfiguration()) { dataSource, collectionView, changeSet in
-                return .animated
-            } configureCell: { dataSource, collectionView, indexPath, item in
+        let dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<SearchViewSection, SearchViewItem>> { dataSource, collectionView, indexPath, item in
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: item.reuseIdentifier, for: indexPath)
                 
                 item.configure(cell: cell)
@@ -62,10 +59,6 @@ public final class SearchViewController: ViewController<SearchView, SearchViewMo
                 section.configure(supplementaryView: supplementaryView)
                 
                 return supplementaryView
-            } moveItem: { dataSource, sourceIndexPath, destinationIndexPath in
-                
-            } canMoveItemAtIndexPath: { dataSource, indexPath in
-                return false
             }
         
         
@@ -73,29 +66,15 @@ public final class SearchViewController: ViewController<SearchView, SearchViewMo
             .$items
             .withUnretained(self)
             .do { (object, element) in
-                if element.isEmpty {
+                logger.info("\(element)")
+                
+                if element.values.allSatisfy(\.isEmpty) {
                     object.contentView.collectionView.collectionViewLayout = UICollectionViewLayout()
                     object.contentView.isEmpty = true
                 } else {
                     object.contentView.collectionView.collectionViewLayout = object.buildCollectionViewLayout(items: element)
                     object.contentView.isEmpty = false
                 }
-            } afterNext: { (object, element) in
-                
-            } onError: { error in
-                
-            } afterError: { error in
-                
-            } onCompleted: {
-                
-            } afterCompleted: {
-                
-            } onSubscribe: {
-                
-            } onSubscribed: {
-                
-            } onDispose: {
-                
             }
             .map { object, element in
                 element.map(AnimatableSectionModel.init(model:items:))
