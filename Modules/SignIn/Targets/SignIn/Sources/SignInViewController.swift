@@ -31,7 +31,7 @@ public final class SignInViewController: UIViewController {
         self.contentView.webView.navigationDelegate = self
         
         self.viewModel
-            .signInURL
+            .$signInURL
             .compactMap { $0 }
             .asDriver(onErrorDriveWith: .empty())
             .drive(with: self) { object, element in
