@@ -3,10 +3,19 @@ import RxSwift
 import RxRelay
 import OAuthSwift
 import ULID
+import Core
 
 public final class AuthorizationController: CustomStringConvertible {
     
-    public let isAuthenticated: BehaviorRelay<Bool>
+    @Relay
+    public var isAuthenticated: Bool
+    
+    @Relay
+    public var credential: Credential? {
+        didSet {
+            self.isAuthenticated = self.credential != nil
+        }
+    }
     
     private let consumerKey: String
     
@@ -52,7 +61,8 @@ public final class AuthorizationController: CustomStringConvertible {
         self.consumerKey = consumerKey
         self.consumerSecret = consumerSecret
         
-        self.isAuthenticated = BehaviorRelay(value: false)
+        self.isAuthenticated = false
+        self.credential = nil
     }
     
     public var description: String {
@@ -73,12 +83,12 @@ public final class AuthorizationController: CustomStringConvertible {
             switch result {
             case .success(let value):
                 let (credential, response, parameters) = value
-                logger.info("credential: \(credential), response: \(response), parameters: \(parameters)")
+                logger.info("credential: \(credential), response: \(String(describing: response)), parameters: \(parameters)")
                 logger.info("credential { oauthToken: \(credential.oauthToken) }")
                 
-                completionHandler(.success(Void()))
+                self.credential = Credential(accessToken: credential.oauthToken)
                 
-                self.isAuthenticated.accept(true)
+                completionHandler(.success(Void()))
             case .failure(let error):
                 logger.info("\(error)")
                 

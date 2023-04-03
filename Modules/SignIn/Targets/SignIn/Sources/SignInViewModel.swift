@@ -6,7 +6,8 @@ import RxRelay
 
 public final class SignInViewModel {
     
-    public let signInURL: BehaviorRelay<URL?>
+    @Relay
+    public var signInURL: URL?
     
     public let isFinished: PublishRelay<Result<Void, Error>>
     
@@ -14,7 +15,7 @@ public final class SignInViewModel {
     public var signInController: SignInControllerProtocol?
     
     public init() {
-        self.signInURL = BehaviorRelay(value: nil)
+        self.signInURL = nil
         self.isFinished = PublishRelay()
         
         if let signInController {
@@ -22,7 +23,7 @@ public final class SignInViewModel {
                 guard let self else {
                     return
                 }
-                self.signInURL.accept(url)
+                self.signInURL = url
             }
         }
     }
