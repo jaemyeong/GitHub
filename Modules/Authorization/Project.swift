@@ -3,7 +3,7 @@ import ProjectDescription
 let project = Project(
     name: "Authorization",
     organizationName: nil,
-    options: .options(defaultKnownRegions: ["ko"], developmentRegion: "ko"),
+    options: .options(defaultKnownRegions: ["Base", "ko"], developmentRegion: "ko"),
     packages: [],
     settings: .settings(
         base: [
