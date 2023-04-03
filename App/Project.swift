@@ -95,6 +95,17 @@ let project = Project(
                         ]),
                     ]),
                 ]),
+                "CFBundleURLTypes": .array([
+                    .dictionary([
+                        "CFBundleTypeRole": .string("Editor"),
+                        "CFBundleURLSchemes": .array([
+                            .string("github"),
+                        ]),
+                    ]),
+                ]),
+                "NSAppTransportSecurity": .dictionary([
+                    "NSAllowsArbitraryLoads": .boolean(true),
+                ]),
             ]),
             sources: [
                 "Targets/GitHub/Sources/**"

@@ -2,6 +2,7 @@ import UIKit
 import Core
 import Search
 import Profile
+import Authorization
 
 public final class SceneDelegate: UIResponder {
     
@@ -24,6 +25,15 @@ extension SceneDelegate: UIWindowSceneDelegate {
         self.window = window
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
+    }
+    
+    public func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        @Inject
+        var authorizationSceneDelegate: AuthorizationSceneDelegate?
+        
+        if let authorizationSceneDelegate {
+            authorizationSceneDelegate.scene(scene, openURLContexts: URLContexts)
+        }
     }
 }
 

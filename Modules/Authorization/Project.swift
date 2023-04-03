@@ -85,7 +85,10 @@ let project = Project(
             productName: nil,
             bundleId: "com.jaemyeong.Authorization",
             deploymentTarget: .iOS(targetVersion: "13.0", devices: [.iphone]),
-            infoPlist: nil,
+            infoPlist: .dictionary([
+                "GITHUB_CONSUMER_KEY": .string(Environment.githubConsumerKey.getString(default: "")),
+                "GITHUB_CONSUMER_SECRET": .string(Environment.githubConsumerSecret.getString(default: "")),
+            ]),
             sources: [
                 "Targets/Authorization/Sources/**"
             ],
@@ -108,6 +111,9 @@ let project = Project(
                 .external(name: "RxDataSources"),
                 .external(name: "ErrorKit"),
                 .external(name: "Logging"),
+                .external(name: "Alamofire"),
+                .external(name: "OAuthSwift"),
+                .external(name: "ULID"),
             ],
             settings: .settings(
                 base: [

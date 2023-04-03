@@ -19,5 +19,32 @@ public struct ContainerConfiguration {
         Container.shared.register(ProfileViewController.self, name: String(describing: ProfileViewController.self)) { container in
             ProfileViewController()
         }
+        
+        Container.shared.register(SignInControllerProtocol.self) { container in
+            AuthorizationController()
+        }
+        
+        Container.shared.register(AuthorizationSceneDelegate.self) { container in
+            AuthorizationSceneDelegate()
+        }
+    }
+}
+
+extension AuthorizationController: SignInControllerProtocol {
+    
+    public var urlHandler: ((URL) -> Void)? {
+        get {
+            self.authorizeURLHandler
+        }
+        set {
+            guard let newValue else {
+                return
+            }
+            self.authorizeURLHandler = newValue
+        }
+    }
+    
+    public func signIn(completionHandler: @escaping (Result<Void, Error>) -> Void) {
+        self.authorize(completionHandler: completionHandler)
     }
 }
