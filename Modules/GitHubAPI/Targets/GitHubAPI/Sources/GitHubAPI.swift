@@ -15,6 +15,8 @@ public enum GitHubAPI: TargetType {
     
     case unstar(owner: String, repository: String)
     
+    case isStarred(owner: String, repository: String)
+    
     public var baseURL: URL {
         URL(string: "https://api.github.com")!
     }
@@ -31,6 +33,8 @@ public enum GitHubAPI: TargetType {
             return "/user/starred/\(owner)/\(repository)"
         case .unstar(let owner, let repository):
             return "/user/starred/\(owner)/\(repository)"
+        case .isStarred(let owner, let repository):
+            return "/user/starred/\(owner)/\(repository)"
         }
     }
     
@@ -46,6 +50,8 @@ public enum GitHubAPI: TargetType {
             return .put
         case .unstar:
             return .delete
+        case .isStarred:
+            return .get
         }
     }
     
@@ -65,6 +71,8 @@ public enum GitHubAPI: TargetType {
         case .star:
             return .requestPlain
         case .unstar:
+            return .requestPlain
+        case .isStarred:
             return .requestPlain
         }
     }

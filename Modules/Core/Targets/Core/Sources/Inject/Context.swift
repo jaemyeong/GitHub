@@ -15,7 +15,23 @@ public final class Context: CustomStringConvertible {
             self.storage[id] = newValue
         }
         get {
-            self.storage[id] as? T
+            if let object = self.storage[id] as? T {
+                return object
+            } else {
+                let object = self.storage.first { key, value in
+                    guard value is T || value is T.Type else {
+                        return false
+                    }
+                    
+                    guard key.name == id.name else {
+                        return false
+                    }
+                    
+                    return true
+                }
+                
+                return object?.value as? T
+            }
         }
     }
     

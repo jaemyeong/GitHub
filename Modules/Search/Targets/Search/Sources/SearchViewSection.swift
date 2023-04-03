@@ -42,16 +42,6 @@ public enum SearchViewSection: Equatable, Hashable {
             )
             
             let section = NSCollectionLayoutSection(group: group)
-            section.boundarySupplementaryItems = [
-                NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: NSCollectionLayoutSize(
-                        widthDimension: .fractionalWidth(1.0),
-                        heightDimension: .estimated(44.0)
-                    ),
-                    elementKind: UICollectionView.elementKindSectionHeader,
-                    alignment: .top
-                )
-            ]
             
             return section
         }

@@ -45,7 +45,7 @@ extension SearchEmptyView {
     }
     
     private func configureTextLabel() {
-        self.textLabel.text = NSLocalizedString("최근 검색 내역이 없습니다.", bundle: .module, comment: "최근 검색 내역이 없습니다.")
+        self.textLabel.text = NSLocalizedString("검색 내역이 없습니다.", bundle: .module, comment: "검색 내역이 없습니다.")
         self.textLabel.textColor = .secondaryLabel
         self.textLabel.textAlignment = .center
         self.textLabel.font = .preferredFont(forTextStyle: .headline)

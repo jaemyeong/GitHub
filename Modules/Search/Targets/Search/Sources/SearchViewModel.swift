@@ -15,14 +15,7 @@ public final class SearchViewModel {
     }
     
     public func onRefresh(completionHandler: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + ((0...2000).randomElement().map { Double($0) / 1000.0 } ?? 0.0)) {
-            self.items = [
-                .default(): stride(from: 0, through: (0...100).randomElement() ?? 0, by: 1).map { _ in
-                    SearchViewItem.default()
-                },
-            ]
-            completionHandler()
-        }
+        completionHandler()
     }
     
     public func onWillAppear() {}
